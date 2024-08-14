@@ -5,13 +5,6 @@ import Task from './model/Task.js';
 import User from './model/User.js';
 
 await mongoose.connect('mongodb://127.0.0.1/todo');
-//66bc462fe7c703c393ce9c88
-
-// await Task.create({name: "task", description: "This is a thing that I need to do at some point", dueDate: Date.now()});
-
-await Task.deleteMany({name: "task"});
-
-// mongoose.disconnect();
 
 const port = 3050;
 const taskapi = express();
@@ -32,7 +25,7 @@ taskapi.get('/userTasks/:userID', async (req, res) => {
 	}
 
 	// Otherwise, return the tasks
-	let result = await Task.find({name: "task"}).exec();
+	let result = await Task.find({owner: userID}).exec();
 
 	res.json(result);
 });
