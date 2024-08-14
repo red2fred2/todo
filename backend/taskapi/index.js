@@ -46,3 +46,27 @@ taskapi.get('/task/:taskID', async (req, res) => {
 
 	res.json(result);
 });
+
+// Create a new task
+taskapi.put('/createTask', async (req, res) => {
+	// Make sure we have all the information we need
+	let name = req.query.name;
+	let description = req.query.description;
+	let owner = req.query.owner;
+	let dueDate = req.query.dueDate;
+
+	if(name === undefined || description === undefined || owner === undefined || dueDate === undefined) {
+		return res.status(400)
+				  .json({error: "Does not include requred information. Requires name: String, description: String, owner: ObjectId, dueDate: Date"});
+	}
+
+	// Otherwise, create it and return confirmation
+	await Task.create({
+		name: name,
+		description: description,
+		owner: owner,
+		dueDate: dueDate
+	});
+
+	res.json({message: "Task created"});
+});
