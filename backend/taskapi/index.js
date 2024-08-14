@@ -13,15 +13,8 @@ taskapi.listen(port, () => {
 	console.log(`Server listening on port ${port}`);
 });
 
-// Allow CORS from anywhere
-taskapi.use((req, res, next) => {
-	res.header("Access-Control-Allow-Origin", "*");
-	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-	next();
-});
-
 // Get all tasks from a single user
-taskapi.get('/userTasks/:userID', async (req, res) => {
+taskapi.get('/api/userTasks/:userID', async (req, res) => {
 	let userID = req.params.userID;
 
 	// Handle invalid ID
@@ -45,7 +38,7 @@ taskapi.get('/userTasks/:userID', async (req, res) => {
 });
 
 // Get a single task
-taskapi.get('/task/:taskID', async (req, res) => {
+taskapi.get('/api/task/:taskID', async (req, res) => {
 	let taskID = req.params.taskID;
 
 	// Handle invalid ID
@@ -68,7 +61,7 @@ taskapi.get('/task/:taskID', async (req, res) => {
 });
 
 // Create a new task
-taskapi.post('/createTask', async (req, res) => {
+taskapi.post('/api/createTask', async (req, res) => {
 	// Make sure we have all the information we need
 	let name = req.query.name;
 	let description = req.query.description;
@@ -92,7 +85,7 @@ taskapi.post('/createTask', async (req, res) => {
 });
 
 // Create a new task
-taskapi.delete('/deleteTask/:taskID', async (req, res) => {
+taskapi.delete('/api/deleteTask/:taskID', async (req, res) => {
 	let taskID = req.params.taskID;
 
 	// Handle invalid ID
@@ -115,7 +108,7 @@ taskapi.delete('/deleteTask/:taskID', async (req, res) => {
 });
 
 // Update an existing task
-taskapi.patch('/updateTask/:taskID', async (req, res) => {
+taskapi.patch('/api/updateTask/:taskID', async (req, res) => {
 	let taskID = req.params.taskID;
 
 	// Handle invalid ID
