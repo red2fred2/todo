@@ -70,3 +70,20 @@ taskapi.put('/createTask', async (req, res) => {
 
 	res.json({message: "Task created"});
 });
+
+// Create a new task
+taskapi.delete('/deleteTask/:taskID', async (req, res) => {
+	let taskID = req.params.taskID;
+
+	// Handle the task not existing
+	let exists = await Task.findById(taskID).exec();
+	if(exists === null) {
+		return res.status(404)
+				  .json({error: "Task does not exist"});
+	}
+
+	// Otherwise, delete it and return confirmation
+	await Task.findByIdAndDelete(taskID);
+
+	res.json({message: "Task deleted"});
+});
