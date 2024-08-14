@@ -14,7 +14,7 @@ export default class List extends React.Component {
 	}
 
 	getListItems = async () => {
-		let res = await fetch(`http://192.168.86.193:3050/userTasks/${this.state.userID}`);
+		let res = await fetch(`https://test.red2fred2.com/api/userTasks/${this.state.userID}`);
 		let json = await res.json();
 
 		this.setState({isLoading: false, tasks: json});
@@ -29,7 +29,7 @@ export default class List extends React.Component {
 
 		if(isLoading) return null;
 
-		const listItems = this.state.tasks.map(task => <ListItem name={task.name} key={task._id} />);
+		const listItems = this.state.tasks.map(task => <ListItem name={task.name} taskID={task._id} key={task._id} />);
 
 		return (
 			<ol>
