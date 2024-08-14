@@ -13,6 +13,13 @@ taskapi.listen(port, () => {
 	console.log(`Server listening on port ${port}`);
 });
 
+// Allow CORS from anywhere
+taskapi.use((req, res, next) => {
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	next();
+});
+
 // Get all tasks from a single user
 taskapi.get('/userTasks/:userID', async (req, res) => {
 	let userID = req.params.userID;
