@@ -1,6 +1,6 @@
-import bcrypt from 'bcrypt';
 import express from 'express';
 import mongoose from 'mongoose';
+
 import Task from './model/Task.js';
 import User from './model/User.js';
 
