@@ -18,8 +18,8 @@ taskapi.get('/userTasks/:userID', async (req, res) => {
 	let userID = req.params.userID;
 
 	// Handle the user not existing
-	let exists = await User.findById(userID).exec();
-	if(exists === null) {
+	let task = await User.findById(userID).exec();
+	if(task === null) {
 		return res.status(404)
 				  .json({error: "User does not exist"});
 	}
@@ -35,8 +35,8 @@ taskapi.get('/task/:taskID', async (req, res) => {
 	let taskID = req.params.taskID;
 
 	// Handle the task not existing
-	let exists = await Task.findById(taskID).exec();
-	if(exists === null) {
+	let task = await Task.findById(taskID).exec();
+	if(task === null) {
 		return res.status(404)
 				  .json({error: "Task does not exist"});
 	}
@@ -76,8 +76,8 @@ taskapi.delete('/deleteTask/:taskID', async (req, res) => {
 	let taskID = req.params.taskID;
 
 	// Handle the task not existing
-	let exists = await Task.findById(taskID).exec();
-	if(exists === null) {
+	let task = await Task.findById(taskID).exec();
+	if(task === null) {
 		return res.status(404)
 				  .json({error: "Task does not exist"});
 	}
@@ -86,4 +86,34 @@ taskapi.delete('/deleteTask/:taskID', async (req, res) => {
 	await Task.findByIdAndDelete(taskID);
 
 	res.json({message: "Task deleted"});
+});
+
+// Update an existing task
+taskapi.patch('/updateTask/:taskID', async (req, res) => {
+	let taskID = req.params.taskID;
+
+	// Handle the task not existing
+	let task = await Task.findById(taskID).exec();
+	if(task === null) {
+		return res.status(404)
+				  .json({error: "Task does not exist"});
+	}
+
+	// Update one part at a time
+	let name = req.query.name;
+	if(name !== undefined) task.name = name;
+
+	let description = req.query.description;
+	if(description !== undefined) task.description = description;
+
+	let owner = req.query.owner;
+	if(owner !== undefined) task.owner = owner;
+
+	let dueDate = req.query.dueDate;
+	if(dueDate !== undefined) task.dueDate = dueDate;
+
+	// Save it and send confirmation
+	await task.save();
+
+	res.json({message: "Task updated"});
 });
