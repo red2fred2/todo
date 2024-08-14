@@ -1,18 +1,14 @@
-import './App.css';
-import ListItem from './ListItem';
+import React from 'react';
 
-function App() {
+import List from './List';
+import './App.css';
+
+export default function App() {
 	return (
 		<div className="App">
 	  		<section>
-				<ListItem name="Lorem ipsum dolor sit amet, consectetur adipiscing elit" />
-				<ListItem name="b" />
-				<ListItem name="c" />
-				<ListItem name="d" />
-				<ListItem name="e" />
+				<List userID="66bc462fe7c703c393ce9c88" />
 	  		</section>
 		</div>
 	);
 }
-
-export default App;

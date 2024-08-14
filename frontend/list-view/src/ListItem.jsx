@@ -9,7 +9,7 @@ function Xbutton(props) {
 	)
 }
 
-function ListItem(props) {
+export default function ListItem(props) {
 	return (
 		<li className="ListItem">
 			{props.name}
@@ -17,5 +17,3 @@ function ListItem(props) {
 		</li>
 	);
 }
-
-export default ListItem;
