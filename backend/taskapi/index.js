@@ -17,6 +17,12 @@ taskapi.listen(port, () => {
 taskapi.get('/userTasks/:userID', async (req, res) => {
 	let userID = req.params.userID;
 
+	// Handle invalid ID
+	if(!mongoose.isObjectIdOrHexString(userID)) {
+		return res.status(404)
+				  .json({error: "Invalid user ID"});
+	}
+
 	// Handle the user not existing
 	let task = await User.findById(userID).exec();
 	if(task === null) {
@@ -33,6 +39,12 @@ taskapi.get('/userTasks/:userID', async (req, res) => {
 // Get a single task
 taskapi.get('/task/:taskID', async (req, res) => {
 	let taskID = req.params.taskID;
+
+	// Handle invalid ID
+	if(!mongoose.isObjectIdOrHexString(taskID)) {
+		return res.status(404)
+				  .json({error: "Invalid task ID"});
+	}
 
 	// Handle the task not existing
 	let task = await Task.findById(taskID).exec();
@@ -75,6 +87,12 @@ taskapi.post('/createTask', async (req, res) => {
 taskapi.delete('/deleteTask/:taskID', async (req, res) => {
 	let taskID = req.params.taskID;
 
+	// Handle invalid ID
+	if(!mongoose.isObjectIdOrHexString(taskID)) {
+		return res.status(404)
+				  .json({error: "Invalid task ID"});
+	}
+
 	// Handle the task not existing
 	let task = await Task.findById(taskID).exec();
 	if(task === null) {
@@ -91,6 +109,12 @@ taskapi.delete('/deleteTask/:taskID', async (req, res) => {
 // Update an existing task
 taskapi.patch('/updateTask/:taskID', async (req, res) => {
 	let taskID = req.params.taskID;
+
+	// Handle invalid ID
+	if(!mongoose.isObjectIdOrHexString(taskID)) {
+		return res.status(404)
+				  .json({error: "Invalid task ID"});
+	}
 
 	// Handle the task not existing
 	let task = await Task.findById(taskID).exec();
