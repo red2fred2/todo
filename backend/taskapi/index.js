@@ -38,9 +38,10 @@ taskapi.get('/userTasks/:userID', async (req, res) => {
 	}
 
 	// Otherwise, return the tasks
-	let result = await Task.find({owner: userID}).exec();
+	let tasks = await Task.find({owner: userID}).exec();
+	let sorted = tasks.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
 
-	res.json(result);
+	res.json(sorted);
 });
 
 // Get a single task
