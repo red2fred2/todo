@@ -48,7 +48,7 @@ taskapi.get('/task/:taskID', async (req, res) => {
 });
 
 // Create a new task
-taskapi.put('/createTask', async (req, res) => {
+taskapi.post('/createTask', async (req, res) => {
 	// Make sure we have all the information we need
 	let name = req.query.name;
 	let description = req.query.description;
