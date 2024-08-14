@@ -1,8 +1,6 @@
 import './ListItem.css';
 import xButtonImage from './xButton.svg';
 
-console.log(xButtonImage);
-
 function Xbutton(props) {
 	return (
 		<button className="ListItemXButton" type="image">
@@ -13,10 +11,10 @@ function Xbutton(props) {
 
 function ListItem(props) {
 	return (
-		<div className="ListItem">
+		<li className="ListItem">
 			{props.name}
 			<Xbutton />
-		</div>
+		</li>
 	);
 }
 
