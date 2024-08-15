@@ -8,13 +8,12 @@ export default class List extends React.Component {
 
 		this.state = {
 			isLoading: true,
-			userID: props.userID,
 			tasks: []
 		};
 	}
 
 	updateListItems = async () => {
-		let res = await fetch(`https://test.red2fred2.com/api/userTasks/${this.state.userID}`);
+		let res = await fetch(`https://test.red2fred2.com/api/userTasks/${this.props.userID}`);
 		let json = await res.json();
 
 		this.setState({isLoading: false, tasks: json});
@@ -25,9 +24,7 @@ export default class List extends React.Component {
 	}
 
 	render() {
-		const {isLoading} = this.state;
-
-		if(isLoading) return null;
+		if(this.state.isLoading) return null;
 
 		const listItems = this.state.tasks.map(task => <ListItem name={task.name} taskID={task._id} updateListItems={this.updateListItems} key={task._id} />);
 

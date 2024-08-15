@@ -20,8 +20,7 @@ class EditButton extends React.Component {
 
 class XButton extends React.Component {
 	deleteTask = async () => {
-		await fetch(`https://test.red2fred2.com/api/deleteTask/${this.props.taskID}`, {method: 'DELETE'});
-		this.props.updateListItems();
+
 	}
 
 	render() {
@@ -33,22 +32,53 @@ class XButton extends React.Component {
 	}
 }
 
-export default function SingleView() {
-	const date = new Date();
+export default class SingleView extends React.Component {
+	constructor(props) {
+		super(props);
 
-	return (
-		<div className="SingleView">
-			<header className="SingleView-header">
-				<EditButton />
-				<div>
-					<h2>Task Name</h2>
-					<time className="SingleView-header-date">{date.toDateString()}</time>
-				</div>
-				<XButton />
-			</header>
-			<section className="SingleView-description">
-				description
-			</section>
-		</div>
-	);
+		this.state = {
+			isLoading: true,
+			name: undefined,
+			description: undefined,
+			dueDate: undefined
+		};
+	}
+
+	updateTask = async () => {
+		let res = await fetch(`https://test.red2fred2.com/api/task/${this.props.taskID}`);
+		let json = await res.json();
+
+		this.setState({
+			isLoading: false,
+			name: json.name,
+			description: json.description,
+			dueDate: json.dueDate
+		});
+	}
+
+	componentDidMount() {
+		this.updateTask();
+	}
+
+	render() {
+		if(this.state.isLoading) return null;
+
+		const dueDate = new Date(this.state.dueDate);
+
+		return (
+			<div className="SingleView">
+				<header className="SingleView-header">
+					<EditButton taskID={this.props.taskID} />
+					<div>
+						<h2>{this.state.name}</h2>
+						<time className="SingleView-header-date">{dueDate.toDateString()}</time>
+					</div>
+					<XButton taskID={this.props.taskID} />
+				</header>
+				<section className="SingleView-description">
+					{this.state.description}
+				</section>
+			</div>
+		);
+	}
 }
