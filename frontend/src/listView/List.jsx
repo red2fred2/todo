@@ -28,10 +28,6 @@ export default class List extends React.Component {
 
 		const listItems = this.state.tasks.map(task => <ListItem name={task.name} taskID={task._id} updateListItems={this.updateListItems} setView={this.props.setView} setCurrentTask={this.props.setCurrentTask} key={task._id} />);
 
-		return (
-			<ol>
-				{listItems}
-			</ol>
-		);
+		return <ol>{listItems}</ol>;
 	}
 }
