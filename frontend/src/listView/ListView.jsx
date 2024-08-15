@@ -8,7 +8,7 @@ export default function ListView(props) {
 	return (
 		<div className="ListView">
 	  		<header className="ListView-header">
-				Dylan
+				Tasks
 				<button className="ListView-header-addButton" type="image">
 					<img src={xButtonImage} viewBox="0 0 50 50" alt="X"/>
 				</button>

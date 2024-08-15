@@ -9,32 +9,53 @@
 
 .SingleView-header {
 	display: flex;
-	justify-content: space-between;
-	background-color: #ddd;
+	font-size: 3em;
+	color: #ddd;
 	outline: 2px solid #ddd;
 	margin: 1%;
 	padding: 1%;
 	overflow-wrap: anywhere;
 }
 
-.SingleView-header > div {
+.SingleView-header:hover {
+	background-color: #ddd;
+	color: #222;
+}
+
+.SingleView-title-container {
+	display: flex;
+	justify-content: center;
+}
+
+.SingleView-title {
+	display: flex;
+	justify-content: space-between;
+	background-color: #ddd;
+	outline: 2px solid #ddd;
+	width: 80%;
+	margin: 1%;
+	padding: 1%;
+	overflow-wrap: anywhere;
+}
+
+.SingleView-title > div {
 	text-align: center;
 }
 
-.SingleView-header > div > h2 {
+.SingleView-title > div > h2 {
 	color: #222;
 	text-align: center;
 	font-size: 6em;
 	margin: 0;
 }
 
-.SingleView-header-date {
+.SingleView-title-date {
 	color: #555;
 	margin-top: 0;
 	font-size: 2em;
 }
 
-.SingleView-header-editButton > img {
+.SingleView-title-editButton > img {
 	margin-left: 10px;
 }
 

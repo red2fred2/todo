@@ -57,6 +57,10 @@ export default class SingleView extends React.Component {
 		});
 	}
 
+	backToListView = () => {
+		this.props.setView('List');
+	}
+
 	componentDidMount() {
 		this.updateTask();
 	}
@@ -68,14 +72,19 @@ export default class SingleView extends React.Component {
 
 		return (
 			<div className="SingleView">
-				<header className="SingleView-header">
-					<EditButton taskID={this.props.taskID} setView={this.props.setView} setCurrentTask={this.props.setCurrentTask} />
-					<div>
-						<h2>{this.state.name}</h2>
-						<time className="SingleView-header-date">{dueDate.toDateString()}</time>
-					</div>
-					<XButton taskID={this.props.taskID} setView={this.props.setView} />
+				<header className="SingleView-header" onClick={this.backToListView}>
+					Tasks
 				</header>
+				<section className="SingleView-title-container">
+					<div className="SingleView-title">
+						<EditButton taskID={this.props.taskID} setView={this.props.setView} setCurrentTask={this.props.setCurrentTask} />
+						<div>
+							<h2>{this.state.name}</h2>
+							<time className="SingleView-title-date">{dueDate.toDateString()}</time>
+						</div>
+						<XButton taskID={this.props.taskID} setView={this.props.setView} />
+					</div>
+				</section>
 				<section className="SingleView-description">
 					{this.state.description}
 				</section>
