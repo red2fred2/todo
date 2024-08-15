@@ -4,7 +4,7 @@ import List from './List';
 import xButtonImage from './xButton.svg';
 import './ListView.css';
 
-export default function ListView() {
+export default function ListView(props) {
 	return (
 		<div className="ListView">
 	  		<header className="ListView-header">
@@ -14,7 +14,7 @@ export default function ListView() {
 				</button>
 			</header>
 			<section>
-				<List userID="66bc462fe7c703c393ce9c88" />
+				<List userID="66bc462fe7c703c393ce9c88" setView={props.setView} setCurrentTask={props.setCurrentTask} />
 	  		</section>
 		</div>
 	);

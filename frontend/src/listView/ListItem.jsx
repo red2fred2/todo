@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Views from '../App';
 import './ListItem.css';
 import xButtonImage from './xButton.svg';
 
@@ -18,11 +19,19 @@ class XButton extends React.Component {
 	}
 }
 
-export default function ListItem(props) {
-	return (
-		<li className="ListItem">
-			{props.name}
-			<XButton taskID={props.taskID} updateListItems={props.updateListItems} />
-		</li>
-	);
+export default class ListItem extends React.Component {
+	setSingleView = taskID => () => {
+		console.log(Views.Single)
+		this.props.setCurrentTask(taskID);
+		this.props.setView('Single');
+	};
+
+	render() {
+		return (
+			<li className="ListItem" onClick={this.setSingleView(this.props.taskID)}>
+				{this.props.name}
+				<XButton taskID={this.props.taskID} updateListItems={this.props.updateListItems} />
+			</li>
+		);
+	}
 }
