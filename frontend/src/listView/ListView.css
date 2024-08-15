@@ -2,10 +2,11 @@
 .ListView {
 	position: fixed;
     width: 100%;
-	min-height: 100vh;
+	height: 100%;
     left: 0;
     top: 0;
 	margin-right: 0;
+	overflow-y: scroll;
 }
 
 .ListView-header {
