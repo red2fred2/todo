@@ -3,20 +3,6 @@ import React from 'react';
 import './EditView.css';
 import confirmButtonImage from './confirmButton.svg';
 
-class ConfirmButton extends React.Component {
-	updateTask = async () => {
-
-	}
-
-	render() {
-		return (
-			<button className="EditView-header-editButton" type="image" onClick={this.updateTask}>
-				<img src={confirmButtonImage} alt="Confirm"/>
-			</button>
-		)
-	}
-}
-
 export default class EditView extends React.Component {
 	constructor(props) {
 		super(props);
@@ -41,12 +27,22 @@ export default class EditView extends React.Component {
 		});
 	}
 
+	patchTask = async () => {
+		let query = new URLSearchParams();
+		query.append('name', this.state.name);
+		query.append('description', this.state.description);
+		query.append('dueDate', this.state.dueDate);
+
+		await fetch(`https://test.red2fred2.com/api/updateTask/${this.props.taskID}?${query.toString()}`, {method: 'PATCH'});
+		this.props.setView('Single');
+	}
+
 	getDueDateString = () => {
 		const dueDate = new Date(this.state.dueDate);
 		const year = dueDate.getFullYear();
 		let month = dueDate.getMonth()+1;
 		month = month < 10 ? '0'+month : month;
-		let day = dueDate.getDate();
+		let day = dueDate.getDate()+1;
 		day = day < 10 ? '0'+day : day;
 
 		return `${year}-${month}-${day}`;
@@ -54,6 +50,18 @@ export default class EditView extends React.Component {
 
 	backToListView = () => {
 		this.props.setView('List');
+	}
+
+	changeName = event => {
+		this.setState({name: event.target.value});
+	}
+
+	changeDescription = event => {
+		this.setState({description: event.target.value});
+	}
+
+	changeDueDate = event => {
+		this.setState({dueDate: event.target.value.toString()});
 	}
 
 	componentDidMount() {
@@ -72,15 +80,17 @@ export default class EditView extends React.Component {
 					<div className="EditView-title">
 						<div/>
 						<div>
-							<input type="text" placeholder={this.state.name} />
+							<input type="text" placeholder={this.state.name} onChange={this.changeName} />
 							<br/>
-							<input type="date" defaultValue={this.getDueDateString()} />
+							<input type="date" defaultValue={this.getDueDateString()} onChange={this.changeDueDate} />
 						</div>
-						<ConfirmButton taskID={this.props.taskID} setView={this.props.setView} setCurrentTask={this.props.setCurrentTask} />
+						<button className="EditView-header-editButton" type="image" onClick={this.patchTask}>
+							<img src={confirmButtonImage} alt="Confirm"/>
+						</button>
 					</div>
 				</section>
 				<section className="EditView-description">
-					<textarea placeholder={this.state.description} rows="5"/>
+					<textarea placeholder={this.state.description} rows="5" onChange={this.changeDescription} />
 				</section>
 			</div>
 		);

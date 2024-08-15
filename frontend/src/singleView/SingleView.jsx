@@ -69,7 +69,8 @@ export default class SingleView extends React.Component {
 	render() {
 		if(this.state.isLoading) return null;
 
-		const dueDate = new Date(this.state.dueDate);
+		const dueDate = new Date(this.state.dueDate).toUTCString();
+		const dueDateString = dueDate.split(' ').splice(0, 4).join(' ');
 
 		return (
 			<div className="SingleView">
@@ -81,7 +82,7 @@ export default class SingleView extends React.Component {
 						<EditButton taskID={this.props.taskID} setView={this.props.setView} setCurrentTask={this.props.setCurrentTask} />
 						<div>
 							<h2>{this.state.name}</h2>
-							<time className="SingleView-title-date">{dueDate.toDateString()}</time>
+							<time className="SingleView-title-date">{dueDateString}</time>
 						</div>
 						<XButton taskID={this.props.taskID} setView={this.props.setView} />
 					</div>
