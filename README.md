@@ -1,7 +1,7 @@
 # todo
 I want to brush up on the MERN stack. Why not make a simple todo app to help? It's ugly, but it works.
 
-![Demo Video](https://raw.githubusercontent.com/red2fred2/todo/main/example%20images/todo%20demo.mp4)
+https://github.com/user-attachments/assets/52a7c6c0-be1b-4958-8c6f-73b8257f540a
 
 ## Architecture
 
