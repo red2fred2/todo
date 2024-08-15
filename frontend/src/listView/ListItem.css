@@ -13,6 +13,10 @@
 	color: #222;
 }
 
+.ListItem > div {
+	flex-grow: 1;
+}
+
 .ListItem-xButton {
-	margin-left: auto;
+	float: right;
 }

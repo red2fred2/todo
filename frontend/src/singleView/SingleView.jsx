@@ -20,7 +20,8 @@ class EditButton extends React.Component {
 
 class XButton extends React.Component {
 	deleteTask = async () => {
-
+		await fetch(`https://test.red2fred2.com/api/deleteTask/${this.props.taskID}`, {method: 'DELETE'});
+		this.props.setView('List');
 	}
 
 	render() {
@@ -68,12 +69,12 @@ export default class SingleView extends React.Component {
 		return (
 			<div className="SingleView">
 				<header className="SingleView-header">
-					<EditButton taskID={this.props.taskID} />
+					<EditButton taskID={this.props.taskID} setView={this.props.setView} setCurrentTask={this.props.setCurrentTask} />
 					<div>
 						<h2>{this.state.name}</h2>
 						<time className="SingleView-header-date">{dueDate.toDateString()}</time>
 					</div>
-					<XButton taskID={this.props.taskID} />
+					<XButton taskID={this.props.taskID} setView={this.props.setView} />
 				</header>
 				<section className="SingleView-description">
 					{this.state.description}

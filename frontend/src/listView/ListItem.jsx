@@ -28,8 +28,8 @@ export default class ListItem extends React.Component {
 
 	render() {
 		return (
-			<li className="ListItem" onClick={this.setSingleView(this.props.taskID)}>
-				{this.props.name}
+			<li className="ListItem">
+				<div onClick={this.setSingleView(this.props.taskID)}>{this.props.name}</div>
 				<XButton taskID={this.props.taskID} updateListItems={this.props.updateListItems} />
 			</li>
 		);
