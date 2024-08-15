@@ -1,0 +1,71 @@
+.EditView {
+	position: fixed;
+	width: 100%;
+	min-height: 100vh;
+	left: 0;
+	top: 0;
+	margin-right: 0;
+}
+
+.EditView-header {
+	display: flex;
+	font-size: 3em;
+	color: #ddd;
+	outline: 2px solid #ddd;
+	margin: 1%;
+	padding: 1%;
+	overflow-wrap: anywhere;
+}
+
+.EditView-header:hover {
+	background-color: #ddd;
+	color: #222;
+}
+
+.EditView-title-container {
+	display: flex;
+	justify-content: center;
+}
+
+.EditView-title {
+	display: flex;
+	justify-content: space-between;
+	background-color: #ddd;
+	outline: 2px solid #ddd;
+	width: 80%;
+	margin: 1%;
+	padding: 1%;
+	overflow-wrap: anywhere;
+}
+
+.EditView-title > div {
+	text-align: center;
+}
+
+.EditView-title > div > input {
+	color: #222;
+	text-align: center;
+	font-size: 6em;
+	margin: 0;
+}
+
+.EditView-title-date {
+	color: #555;
+	margin-top: 0;
+	font-size: 2em;
+}
+
+.EditView-title-editButton > img {
+	margin-left: 10px;
+}
+
+.EditView-description > textarea {
+	font-size: 3em;
+	width:97%;
+	color: #ddd;
+	background-color: transparent;
+	outline: 2px solid #ddd;
+	margin: 1%;
+	padding: 0.5%;
+	overflow-wrap: anywhere;
+}

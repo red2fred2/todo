@@ -6,12 +6,13 @@ import editButtonImage from './editButton.png';
 
 class EditButton extends React.Component {
 	editTask = async () => {
-
+		this.props.setCurrentTask(this.props.taskID);
+		this.props.setView('Edit');
 	}
 
 	render() {
 		return (
-			<button className="SingleView-header-editButton" type="image" onClick={this.deleteTask}>
+			<button className="SingleView-header-editButton" type="image" onClick={this.editTask}>
 				<img src={editButtonImage} viewBox="0 0 50 50" alt="X"/>
 			</button>
 		)
@@ -27,7 +28,7 @@ class XButton extends React.Component {
 	render() {
 		return (
 			<button className="SingleView-header-xButton" type="image" onClick={this.deleteTask}>
-				<img src={xButtonImage} viewBox="0 0 50 50" alt="X"/>
+				<img src={xButtonImage} alt="X"/>
 			</button>
 		)
 	}
