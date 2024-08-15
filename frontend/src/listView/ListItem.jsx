@@ -6,6 +6,7 @@ import xButtonImage from './xButton.svg';
 class Xbutton extends React.Component {
 	deleteTask = async () => {
 		await fetch(`https://test.red2fred2.com/api/deleteTask/${this.props.taskID}`, {method: 'DELETE'});
+		this.props.updateListItems();
 	}
 
 	render() {
@@ -21,7 +22,7 @@ export default function ListItem(props) {
 	return (
 		<li className="ListItem">
 			{props.name}
-			<Xbutton taskID={props.taskID} />
+			<Xbutton taskID={props.taskID} updateListItems={props.updateListItems} />
 		</li>
 	);
 }
