@@ -42,7 +42,7 @@ export default class EditView extends React.Component {
 		const year = dueDate.getFullYear();
 		let month = dueDate.getMonth()+1;
 		month = month < 10 ? '0'+month : month;
-		let day = dueDate.getDate()+1;
+		let day = dueDate.getDate();
 		day = day < 10 ? '0'+day : day;
 
 		return `${year}-${month}-${day}`;
