@@ -39,10 +39,10 @@ export default class EditView extends React.Component {
 
 	getDueDateString = () => {
 		const dueDate = new Date(this.state.dueDate);
-		const year = dueDate.getFullYear();
-		let month = dueDate.getMonth()+1;
+		const year = dueDate.getUTCFullYear();
+		let month = dueDate.getUTCMonth()+1;
 		month = month < 10 ? '0'+month : month;
-		let day = dueDate.getDate();
+		let day = dueDate.getUTCDate();
 		day = day < 10 ? '0'+day : day;
 
 		return `${year}-${month}-${day}`;
